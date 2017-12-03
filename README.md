@@ -46,12 +46,6 @@ directedGraphMap.hasEdge('A', 'B'); // false
 ```
 
 ### API
-<a name="DirectedGraphMap"></a>
-
-## DirectedGraphMap
-Class representing a Directed Graph Map
-
-**Kind**: global class
 
 * [DirectedGraphMap](#DirectedGraphMap)
     * [new DirectedGraphMap([edges])](#new_DirectedGraphMap_new)
@@ -65,7 +59,7 @@ Class representing a Directed Graph Map
 
 <a name="new_DirectedGraphMap_new"></a>
 
-### new DirectedGraphMap([edges])
+#### new DirectedGraphMap([edges])
 Create a directed graph map.
 
 
@@ -75,7 +69,7 @@ Create a directed graph map.
 
 <a name="DirectedGraphMap+addEdge"></a>
 
-### directedGraphMap.addEdge(source, target) ⇒ <code>void</code>
+#### directedGraphMap.addEdge(source, target) ⇒ <code>void</code>
 Add an edge to the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -87,7 +81,7 @@ Add an edge to the graph map.
 
 <a name="DirectedGraphMap+removeEdge"></a>
 
-### directedGraphMap.removeEdge(source, target) ⇒ <code>void</code>
+#### directedGraphMap.removeEdge(source, target) ⇒ <code>void</code>
 Remove an edge from the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -99,7 +93,7 @@ Remove an edge from the graph map.
 
 <a name="DirectedGraphMap+hasEdge"></a>
 
-### directedGraphMap.hasEdge(source, target) ⇒ <code>boolean</code>
+#### directedGraphMap.hasEdge(source, target) ⇒ <code>boolean</code>
 Test if a edge exists in the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -112,7 +106,7 @@ Test if a edge exists in the graph map.
 
 <a name="DirectedGraphMap+removeSource"></a>
 
-### directedGraphMap.removeSource(source) ⇒ <code>void</code>
+#### directedGraphMap.removeSource(source) ⇒ <code>void</code>
 Remove all edges from a source.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -123,7 +117,7 @@ Remove all edges from a source.
 
 <a name="DirectedGraphMap+removeTarget"></a>
 
-### directedGraphMap.removeTarget(target) ⇒ <code>void</code>
+#### directedGraphMap.removeTarget(target) ⇒ <code>void</code>
 Remove all edges to a target.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -134,7 +128,7 @@ Remove all edges to a target.
 
 <a name="DirectedGraphMap+getSources"></a>
 
-### directedGraphMap.getSources(target) ⇒ <code>Set.&lt;string&gt;</code>
+#### directedGraphMap.getSources(target) ⇒ <code>Set.&lt;string&gt;</code>
 Get all sources with edges to a target.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
@@ -146,7 +140,7 @@ Get all sources with edges to a target.
 
 <a name="DirectedGraphMap+getTargets"></a>
 
-### directedGraphMap.getTargets(source) ⇒ <code>Set.&lt;string&gt;</code>
+#### directedGraphMap.getTargets(source) ⇒ <code>Set.&lt;string&gt;</code>
 Get all targets with edges from a soruce.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#DirectedGraphMap)
