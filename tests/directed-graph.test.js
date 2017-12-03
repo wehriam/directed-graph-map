@@ -244,3 +244,16 @@ test('Initialize with edges', () => {
   expect(directedGraphMap.hasEdge(B, C)).toEqual(true);
   expect(directedGraphMap.hasEdge(A, C)).toEqual(false);
 });
+
+test('Remove edges that do not exist', () => {
+  const A = uuid.v4();
+  const B = uuid.v4();
+  const directedGraphMap = new DirectedGraphMap();
+  expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
+  directedGraphMap.removeEdge(A, B);
+  expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
+  directedGraphMap.removeSource(A);
+  expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
+  directedGraphMap.removeTarget(B);
+  expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
+});
