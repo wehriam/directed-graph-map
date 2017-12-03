@@ -45,9 +45,9 @@ directedGraphMap.removeEdge('A', 'B');
 directedGraphMap.hasEdge('A', 'B'); // false
 ```
 
-## API
+<a name="DirectedGraphMap"></a>
 
-**Kind**: global class
+## API
 
 * [DirectedGraphMap](#DirectedGraphMap)
     * [new DirectedGraphMap([edges])](#new_DirectedGraphMap_new)
