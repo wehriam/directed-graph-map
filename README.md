@@ -1,6 +1,6 @@
 ## Directed Graph Map
 
-[![CircleCI](https://circleci.com/gh/wehriam/directed-graph-map.svg?style=svg)](https://circleci.com/gh/wehriam/directed-graph-map) [![npm version](https://badge.fury.io/js/directed-graph-map.svg)](http://badge.fury.io/js/directed-graph-map)
+[![CircleCI](https://circleci.com/gh/wehriam/directed-graph-map.svg?style=svg)](https://circleci.com/gh/wehriam/directed-graph-map) [![npm version](https://badge.fury.io/js/directed-graph-map.svg)](http://badge.fury.io/js/directed-graph-map) [![codecov](https://codecov.io/gh/wehriam/directed-graph-map/branch/master/graph/badge.svg)](https://codecov.io/gh/wehriam/directed-graph-map)
 
 Directed graph data structure implemented using native `Map` and `Set` objects.
 
