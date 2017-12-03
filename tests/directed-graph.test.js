@@ -6,25 +6,25 @@ const DirectedGraphMap = require('../src');
 
 test('Documentation', () => {
   const directedGraphMap = new DirectedGraphMap([['A', 'B']]);
-  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(true); // returns true
+  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(true); // true
   directedGraphMap.addEdge('B', 'C');
-  expect(directedGraphMap.hasEdge('B', 'C')).toEqual(true); // returns true
-  expect(directedGraphMap.getTargets('A')).toEqual(new Set(['B'])); // returns new Set(["B"]);
-  expect(directedGraphMap.getTargets('B')).toEqual(new Set(['C'])); // returns new Set(["C"]);
-  expect(directedGraphMap.getTargets('C')).toEqual(new Set()); // returns new Set();
-  expect(directedGraphMap.getSources('A')).toEqual(new Set()); // returns new Set();
-  expect(directedGraphMap.getSources('B')).toEqual(new Set(['A'])); // returns new Set(["A"]);
-  expect(directedGraphMap.getSources('C')).toEqual(new Set(['B'])); // returns new Set(["B"]);
+  expect(directedGraphMap.hasEdge('B', 'C')).toEqual(true); // true
+  expect(directedGraphMap.getTargets('A')).toEqual(new Set(['B'])); // new Set(["B"]);
+  expect(directedGraphMap.getTargets('B')).toEqual(new Set(['C'])); // new Set(["C"]);
+  expect(directedGraphMap.getTargets('C')).toEqual(new Set()); // new Set();
+  expect(directedGraphMap.getSources('A')).toEqual(new Set()); // new Set();
+  expect(directedGraphMap.getSources('B')).toEqual(new Set(['A'])); // new Set(["A"]);
+  expect(directedGraphMap.getSources('C')).toEqual(new Set(['B'])); // new Set(["B"]);
   directedGraphMap.removeSource('A');
-  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(false); // returns false
-  expect(directedGraphMap.getTargets('A')).toEqual(new Set()); // returns new Set();
+  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(false); // false
+  expect(directedGraphMap.getTargets('A')).toEqual(new Set()); // new Set();
   directedGraphMap.removeTarget('C');
-  expect(directedGraphMap.getTargets('B')).toEqual(new Set()); // returns new Set();
-  expect(directedGraphMap.hasEdge('B', 'C')).toEqual(false); // returns false
+  expect(directedGraphMap.getTargets('B')).toEqual(new Set()); // new Set();
+  expect(directedGraphMap.hasEdge('B', 'C')).toEqual(false); // false
   directedGraphMap.addEdge('A', 'B');
-  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(true); // returns true
+  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(true); // true
   directedGraphMap.removeEdge('A', 'B');
-  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(false); // returns false
+  expect(directedGraphMap.hasEdge('A', 'B')).toEqual(false); // false
 });
 
 test('Add and remove pairs', () => {

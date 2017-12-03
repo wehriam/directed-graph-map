@@ -16,27 +16,33 @@ Similiar to multi-key maps or bidirectional maps.
 
 const DirectedGraphMap = require('directed-graph-map');
 
+
 const directedGraphMap = new DirectedGraphMap([['A', 'B']]);
 
-directedGraphMap.hasEdge('A', 'B'); // returns true
+directedGraphMap.hasEdge('A', 'B'); // true
+
 directedGraphMap.addEdge('B', 'C');
-directedGraphMap.hasEdge('B', 'C'); // returns true
-directedGraphMap.getTargets('A'); // returns new Set(['B']);
-directedGraphMap.getTargets('B'); // returns new Set(['C']);
-directedGraphMap.getTargets('C'); // returns new Set();
-directedGraphMap.getSources('A'); // returns new Set();
-directedGraphMap.getSources('B'); // returns new Set(['A']);
-directedGraphMap.getSources('C'); // returns new Set(['B']);
+directedGraphMap.hasEdge('B', 'C'); // true
+directedGraphMap.getTargets('A'); // new Set(['B']);
+directedGraphMap.getTargets('B'); // new Set(['C']);
+directedGraphMap.getTargets('C'); // new Set();
+directedGraphMap.getSources('A'); // new Set();
+directedGraphMap.getSources('B'); // new Set(['A']);
+directedGraphMap.getSources('C'); // new Set(['B']);
+
 directedGraphMap.removeSource('A');
-directedGraphMap.hasEdge('A', 'B'); // returns false
-directedGraphMap.getTargets('A'); // returns new Set();
+directedGraphMap.hasEdge('A', 'B'); // false
+directedGraphMap.getTargets('A'); // new Set();
+
 directedGraphMap.removeTarget('C');
-directedGraphMap.getTargets('B'); // returns new Set();
-directedGraphMap.hasEdge('B', 'C'); // returns false
+directedGraphMap.getTargets('B'); // new Set();
+directedGraphMap.hasEdge('B', 'C'); // false
+
 directedGraphMap.addEdge('A', 'B');
-directedGraphMap.hasEdge('A', 'B'); // returns true
+directedGraphMap.hasEdge('A', 'B'); // true
+
 directedGraphMap.removeEdge('A', 'B');
-directedGraphMap.hasEdge('A', 'B'); // returns false
+directedGraphMap.hasEdge('A', 'B'); // false
 ```
 
 ### API
