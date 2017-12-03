@@ -17,6 +17,5 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
-        
-      # run tests!
       - run: yarn test
+      - run: yarn coverage
