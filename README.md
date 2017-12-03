@@ -2,13 +2,22 @@
 
 [![CircleCI](https://circleci.com/gh/wehriam/directed-graph-map.svg?style=svg)](https://circleci.com/gh/wehriam/directed-graph-map) [![npm version](https://badge.fury.io/js/directed-graph-map.svg)](http://badge.fury.io/js/directed-graph-map) [![codecov](https://codecov.io/gh/wehriam/directed-graph-map/branch/master/graph/badge.svg)](https://codecov.io/gh/wehriam/directed-graph-map)
 
-Directed graph data structure [implemented](https://github.com/wehriam/directed-graph-map/blob/master/src/index.js) using native `Map` and `Set` objects.
+Directed graph data structure [implemented](https://github.com/wehriam/directed-graph-map/blob/master/src/index.js) using native `Map` and `Set` objects. Similiar to multi-key maps or bidirectional maps.
 
-Similiar to multi-key maps or bidirectional maps.
+```js
+const dg = new DirectedGraphMap();
+                      //  A
+dg.addEdge('A', 'X'); //  ├── X
+dg.addEdge('A', 'Y'); //  ├── Y
+dg.addEdge('A', 'Z'); //  └── Z
+
+dg.getTargets('A');   //  X, Y, Z
+
+```
 
 ## Install
 
-`yarn install directed-graph-map --save`
+`yarn add directed-graph-map`
 
 ## Usage
 
@@ -16,33 +25,54 @@ Similiar to multi-key maps or bidirectional maps.
 
 const DirectedGraphMap = require('directed-graph-map');
 
+const dgm = new DirectedGraphMap([['A', 'B']]);
 
-const directedGraphMap = new DirectedGraphMap([['A', 'B']]);
+//  A
+//  └── B
 
-directedGraphMap.hasEdge('A', 'B'); // true
+dgm.hasEdge('A', 'B'); // true
 
-directedGraphMap.addEdge('B', 'C');
-directedGraphMap.hasEdge('B', 'C'); // true
-directedGraphMap.getTargets('A'); // new Set(['B']);
-directedGraphMap.getTargets('B'); // new Set(['C']);
-directedGraphMap.getTargets('C'); // new Set();
-directedGraphMap.getSources('A'); // new Set();
-directedGraphMap.getSources('B'); // new Set(['A']);
-directedGraphMap.getSources('C'); // new Set(['B']);
+dgm.addEdge('B', 'C');
 
-directedGraphMap.removeSource('A');
-directedGraphMap.hasEdge('A', 'B'); // false
-directedGraphMap.getTargets('A'); // new Set();
+//  A
+//  └── B
+//      └── C
 
-directedGraphMap.removeTarget('C');
-directedGraphMap.getTargets('B'); // new Set();
-directedGraphMap.hasEdge('B', 'C'); // false
+dgm.hasEdge('B', 'C'); // true
+dgm.getTargets('A'); // new Set(['B']);
+dgm.getTargets('B'); // new Set(['C']);
+dgm.getTargets('C'); // new Set();
+dgm.getSources('A'); // new Set();
+dgm.getSources('B'); // new Set(['A']);
+dgm.getSources('C'); // new Set(['B']);
 
-directedGraphMap.addEdge('A', 'B');
-directedGraphMap.hasEdge('A', 'B'); // true
+dgm.removeSource('A');
 
-directedGraphMap.removeEdge('A', 'B');
-directedGraphMap.hasEdge('A', 'B'); // false
+//  B
+//  └── C
+
+dgm.hasEdge('A', 'B'); // false
+dgm.getTargets('A'); // new Set();
+
+dgm.removeTarget('C');
+
+//  Empty
+
+dgm.getTargets('B'); // new Set();
+dgm.hasEdge('B', 'C'); // false
+
+dgm.addEdge('A', 'B');
+
+//  A
+//  └── B
+
+dgm.hasEdge('A', 'B'); // true
+
+dgm.removeEdge('A', 'B');
+
+//  Empty
+
+dgm.hasEdge('A', 'B'); // false
 ```
 
 <a name="DirectedGraphMap"></a>
@@ -71,7 +101,7 @@ Create a directed graph map.
 
 <a name="DirectedGraphMap+addEdge"></a>
 
-### directedGraphMap.addEdge(source, target) ⇒ <code>void</code>
+### dgm.addEdge(source, target) ⇒ <code>void</code>
 Add an edge to the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -83,7 +113,7 @@ Add an edge to the graph map.
 
 <a name="DirectedGraphMap+removeEdge"></a>
 
-### directedGraphMap.removeEdge(source, target) ⇒ <code>void</code>
+### dgm.removeEdge(source, target) ⇒ <code>void</code>
 Remove an edge from the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -95,7 +125,7 @@ Remove an edge from the graph map.
 
 <a name="DirectedGraphMap+hasEdge"></a>
 
-### directedGraphMap.hasEdge(source, target) ⇒ <code>boolean</code>
+### dgm.hasEdge(source, target) ⇒ <code>boolean</code>
 Test if a edge exists in the graph map.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -108,7 +138,7 @@ Test if a edge exists in the graph map.
 
 <a name="DirectedGraphMap+removeSource"></a>
 
-### directedGraphMap.removeSource(source) ⇒ <code>void</code>
+### dgm.removeSource(source) ⇒ <code>void</code>
 Remove all edges from a source.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -119,7 +149,7 @@ Remove all edges from a source.
 
 <a name="DirectedGraphMap+removeTarget"></a>
 
-### directedGraphMap.removeTarget(target) ⇒ <code>void</code>
+### dgm.removeTarget(target) ⇒ <code>void</code>
 Remove all edges to a target.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -130,7 +160,7 @@ Remove all edges to a target.
 
 <a name="DirectedGraphMap+getSources"></a>
 
-### directedGraphMap.getSources(target) ⇒ <code>Set.&lt;string&gt;</code>
+### dgm.getSources(target) ⇒ <code>Set.&lt;string&gt;</code>
 Get all sources with edges to a target.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
@@ -142,7 +172,7 @@ Get all sources with edges to a target.
 
 <a name="DirectedGraphMap+getTargets"></a>
 
-### directedGraphMap.getTargets(source) ⇒ <code>Set.&lt;string&gt;</code>
+### dgm.getTargets(source) ⇒ <code>Set.&lt;string&gt;</code>
 Get all targets with edges from a soruce.
 
 **Kind**: instance method of [<code>DirectedGraphMap</code>](#api)
