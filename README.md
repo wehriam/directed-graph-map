@@ -1,12 +1,14 @@
 ## Directed Graph Map
 
-Directed graph data structure implemented using native ES6 `Map` and `Set` objects.
+[![CircleCI](https://circleci.com/gh/wehriam/directed-graph-map.svg?style=svg)](https://circleci.com/gh/wehriam/directed-graph-map) [![npm version](https://badge.fury.io/js/directed-graph-map.svg)](http://badge.fury.io/js/directed-graph-map
+
+Directed graph data structure implemented using native `Map` and `Set` objects.
 
 Similiar to multi-key maps or bidirectional maps.
 
 ### Install
 
-yarn install directed-graph-map --save
+`yarn install directed-graph-map --save`
 
 ### Usage
 
