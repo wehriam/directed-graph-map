@@ -48,8 +48,8 @@ test('Add and remove pairs', () => {
   expect(directedGraphMap.getTargets(B)).toEqual(new Set());
   expect(directedGraphMap.getSources(A)).toEqual(new Set());
   expect(directedGraphMap.getSources(B)).toEqual(new Set());
-  expect(directedGraphMap.sources).toEqual(new Map());
-  expect(directedGraphMap.targets).toEqual(new Map());
+  expect(directedGraphMap.sources).toEqual(new Set());
+  expect(directedGraphMap.targets).toEqual(new Set());
 });
 
 test('Remove sources', () => {
@@ -73,8 +73,8 @@ test('Remove sources', () => {
   expect(directedGraphMap.getTargets(B)).toEqual(new Set());
   expect(directedGraphMap.getSources(A)).toEqual(new Set());
   expect(directedGraphMap.getSources(B)).toEqual(new Set());
-  expect(directedGraphMap.sources).toEqual(new Map());
-  expect(directedGraphMap.targets).toEqual(new Map());
+  expect(directedGraphMap.sources).toEqual(new Set());
+  expect(directedGraphMap.targets).toEqual(new Set());
 });
 
 test('Remove targets', () => {
@@ -98,8 +98,8 @@ test('Remove targets', () => {
   expect(directedGraphMap.getTargets(B)).toEqual(new Set());
   expect(directedGraphMap.getSources(A)).toEqual(new Set());
   expect(directedGraphMap.getSources(B)).toEqual(new Set());
-  expect(directedGraphMap.sources).toEqual(new Map());
-  expect(directedGraphMap.targets).toEqual(new Map());
+  expect(directedGraphMap.sources).toEqual(new Set());
+  expect(directedGraphMap.targets).toEqual(new Set());
 });
 
 test('Add and remove groups pairs', () => {
@@ -188,8 +188,8 @@ test('Add and remove groups pairs', () => {
   expect(directedGraphMap.getSources(B)).toEqual(new Set());
   expect(directedGraphMap.getSources(C)).toEqual(new Set());
   expect(directedGraphMap.getSources(D)).toEqual(new Set());
-  expect(directedGraphMap.sources).toEqual(new Map());
-  expect(directedGraphMap.targets).toEqual(new Map());
+  expect(directedGraphMap.sources).toEqual(new Set());
+  expect(directedGraphMap.targets).toEqual(new Set());
 });
 
 test('Add and remove pairs', () => {
@@ -256,4 +256,22 @@ test('Remove edges that do not exist', () => {
   expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
   directedGraphMap.removeTarget(B);
   expect(directedGraphMap.hasEdge(A, B)).toEqual(false);
+});
+
+test('Get edges, sources, and targets', () => {
+  const A = uuid.v4();
+  const B = uuid.v4();
+  const C = uuid.v4();
+  const directedGraphMap = new DirectedGraphMap([[A, B], [B, C]]);
+  expect(directedGraphMap.edges).toEqual([[A, B], [B, C]]);
+  expect(directedGraphMap.sources).toEqual(new Set([A, B]));
+  expect(directedGraphMap.targets).toEqual(new Set([B, C]));
+  directedGraphMap.removeEdge(A, B);
+  expect(directedGraphMap.edges).toEqual([[B, C]]);
+  expect(directedGraphMap.sources).toEqual(new Set([B]));
+  expect(directedGraphMap.targets).toEqual(new Set([C]));
+  directedGraphMap.removeEdge(B, C);
+  expect(directedGraphMap.edges).toEqual([]);
+  expect(directedGraphMap.sources).toEqual(new Set());
+  expect(directedGraphMap.targets).toEqual(new Set());
 });
