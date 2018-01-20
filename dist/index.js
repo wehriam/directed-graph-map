@@ -3,27 +3,29 @@
 /**
  * Class representing a Directed Graph Map
  */
-class DirectedGraphMap {
-                                     
-                                     
+class DirectedGraphMap       {
+                           
+                           
 
   /**
    * Create a directed graph map.
-   * @param {Array<Array<string>>} [edges=[]] - Array of source -> target pairs
+   * @param {Iterable<[S, T]>} [edges=[]] - Iterable containing of source -> target pairs
    */
-  constructor(edges                          = []) {
+  constructor(edges                   = []) {
     this.sourceMap = new Map();
     this.targetMap = new Map();
-    edges.forEach(([source       , target       ]) => this.addEdge(source, target));
+    for (const [source, target] of edges) {
+      this.addEdge(source, target);
+    }
   }
 
   /**
    * Add an edge to the graph map.
-   * @param {string} source - Source of the edge
-   * @param {string} target - Target of the edge
+   * @param {S} source - Source of the edge
+   * @param {T} target - Target of the edge
    * @return {void}
    */
-  addEdge(source       , target       )      {
+  addEdge(source  , target  )      {
     const sources = this.sourceMap.get(source) || new Set();
     const targets = this.targetMap.get(target) || new Set();
     sources.add(target);
@@ -34,11 +36,11 @@ class DirectedGraphMap {
 
   /**
    * Remove an edge from the graph map.
-   * @param {string} source - Source of the edge
-   * @param {string} target - Target of the edge
+   * @param {S} source - Source of the edge
+   * @param {T} target - Target of the edge
    * @return {void}
    */
-  removeEdge(source       , target       )      {
+  removeEdge(source  , target  )      {
     const sources = this.sourceMap.get(source);
     const targets = this.targetMap.get(target);
     if (!sources || !targets) {
@@ -56,11 +58,11 @@ class DirectedGraphMap {
 
   /**
    * Test if a edge exists in the graph map.
-   * @param {string} source - Source of the edge
-   * @param {string} target - Target of the edge
+   * @param {S} source - Source of the edge
+   * @param {T} target - Target of the edge
    * @return {boolean} - Whether the edge exists in the graph map.
    */
-  hasEdge(source       , target       )         {
+  hasEdge(source  , target  )         {
     const sources = this.sourceMap.get(source);
     if (!sources) {
       return false;
@@ -70,10 +72,10 @@ class DirectedGraphMap {
 
   /**
    * Remove all edges from a source.
-   * @param {string} source - Source of the edge
+   * @param {S} source - Source of the edge
    * @return {void}
    */
-  removeSource(source       )      {
+  removeSource(source  )      {
     if (!this.sourceMap.has(source)) {
       return;
     }
@@ -88,10 +90,10 @@ class DirectedGraphMap {
 
   /**
    * Remove all edges to a target.
-   * @param {string} target - Target of the edge
+   * @param {T} target - Target of the edge
    * @return {void}
    */
-  removeTarget(target       )      {
+  removeTarget(target  )      {
     if (!this.targetMap.has(target)) {
       return;
     }
@@ -106,30 +108,36 @@ class DirectedGraphMap {
 
   /**
    * Get all sources with edges to a target.
-   * @param {string} target - Target of the edge
-   * @return {Set<string>} - Set of sources
+   * @param {T} target - Target of the edge
+   * @return {Set<S>} - Set of sources
    */
-  getSources(target       )             {
+  getSources(target  )        {
     return this.targetMap.get(target) || new Set();
   }
 
   /**
    * Get all targets with edges from a source.
-   * @param {string} source - Source of the edge
-   * @return {Set<string>} - Set of targets
+   * @param {S} source - Source of the edge
+   * @return {Set<T>} - Set of targets
    */
-  getTargets(source       )             {
+  getTargets(source  )        {
     return this.sourceMap.get(source) || new Set();
+  }
+
+  /* :: @@iterator(): Iterator<[S, T]> { return ({}: any); } */
+  // $FlowFixMe: computed property
+  [Symbol.iterator]() {
+    return this.edges[Symbol.iterator]();
   }
 
   /**
    * Array of edges
    *
    * @name DirectedGraphMap#edges
-   * @type Array<Array<string>>
+   * @type Array<[S, T]>
    * @readonly
    */
-  get edges()                         {
+  get edges()               {
     return [...this.sourceMap.keys()].reduce((edges, source) => edges.concat([...this.getTargets(source)].map((target) => [source, target])), []);
   }
 
@@ -148,10 +156,10 @@ class DirectedGraphMap {
    * Set of sources
    *
    * @name DirectedGraphMap#sources
-   * @type Set<string>
+   * @type Set<S>
    * @readonly
    */
-  get sources()             {
+  get sources()        {
     return new Set(this.sourceMap.keys());
   }
 
@@ -159,10 +167,10 @@ class DirectedGraphMap {
    * Set of targets
    *
    * @name DirectedGraphMap#targets
-   * @type Set<string>
+   * @type Set<T>
    * @readonly
    */
-  get targets()             {
+  get targets()        {
     return new Set(this.targetMap.keys());
   }
 }

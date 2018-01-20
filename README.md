@@ -103,7 +103,7 @@ Class representing a Directed Graph Map
 
 **Parameters**
 
--   `edges` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;\[[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String), [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)]>**  (optional, default `[]`)
+-   `edges` **Iterable&lt;\[S, T]>**  (optional, default `[]`)
 
 #### addEdge
 
@@ -111,8 +111,8 @@ Add an edge to the graph map.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Source of the edge
--   `target` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Target of the edge
+-   `source` **S** Source of the edge
+-   `target` **T** Target of the edge
 
 Returns **void** 
 
@@ -122,8 +122,8 @@ Remove an edge from the graph map.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Source of the edge
--   `target` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Target of the edge
+-   `source` **S** Source of the edge
+-   `target` **T** Target of the edge
 
 Returns **void** 
 
@@ -133,8 +133,8 @@ Test if a edge exists in the graph map.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Source of the edge
--   `target` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Target of the edge
+-   `source` **S** Source of the edge
+-   `target` **T** Target of the edge
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether the edge exists in the graph map.
 
@@ -144,7 +144,7 @@ Remove all edges from a source.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Source of the edge
+-   `source` **S** Source of the edge
 
 Returns **void** 
 
@@ -154,7 +154,7 @@ Remove all edges to a target.
 
 **Parameters**
 
--   `target` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Target of the edge
+-   `target` **T** Target of the edge
 
 Returns **void** 
 
@@ -164,9 +164,9 @@ Get all sources with edges to a target.
 
 **Parameters**
 
--   `target` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Target of the edge
+-   `target` **T** Target of the edge
 
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Set of sources
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;S>** Set of sources
 
 #### getTargets
 
@@ -174,9 +174,9 @@ Get all targets with edges from a source.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Source of the edge
+-   `source` **S** Source of the edge
 
-Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Set of targets
+Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)&lt;T>** Set of targets
 
 ### DirectedGraphMap#edges
 

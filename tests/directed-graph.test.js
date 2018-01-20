@@ -266,12 +266,31 @@ test('Get edges, sources, and targets', () => {
   expect(directedGraphMap.edges).toEqual([[A, B], [B, C]]);
   expect(directedGraphMap.sources).toEqual(new Set([A, B]));
   expect(directedGraphMap.targets).toEqual(new Set([B, C]));
+  for (const [source, target] of directedGraphMap) {
+    if (source === A) {
+      expect(target).toEqual(B);
+    } else if (source === B) {
+      expect(target).toEqual(C);
+    } else {
+      throw new Error('Unknown edge.');
+    }
+  }
   directedGraphMap.removeEdge(A, B);
   expect(directedGraphMap.edges).toEqual([[B, C]]);
   expect(directedGraphMap.sources).toEqual(new Set([B]));
   expect(directedGraphMap.targets).toEqual(new Set([C]));
+  for (const [source, target] of directedGraphMap) {
+    if (source === B) {
+      expect(target).toEqual(C);
+    } else {
+      throw new Error('Unknown edge.');
+    }
+  }
   directedGraphMap.removeEdge(B, C);
   expect(directedGraphMap.edges).toEqual([]);
   expect(directedGraphMap.sources).toEqual(new Set());
   expect(directedGraphMap.targets).toEqual(new Set());
+  for (const [source, target] of directedGraphMap) { // eslint-disable-line no-unused-vars
+    throw new Error('Unknown edge.');
+  }
 });
