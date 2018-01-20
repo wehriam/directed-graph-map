@@ -9,7 +9,7 @@ class DirectedGraphMap       {
 
   /**
    * Create a directed graph map.
-   * @param {Iterable<[S, T]>} [edges=[]] - Iterable containing of source -> target pairs
+   * @param {Iterable<[S, T]>} [edges=[]] - Iterable containing source -> target pairs
    */
   constructor(edges                   = []) {
     this.sourceMap = new Map();
@@ -81,7 +81,7 @@ class DirectedGraphMap       {
     }
     const sources = this.sourceMap.get(source);
     if (sources) {
-      for (const target of sources) { // eslint-disable-line no-restricted-syntax
+      for (const target of sources) {
         this.removeEdge(source, target);
       }
     }
@@ -99,7 +99,7 @@ class DirectedGraphMap       {
     }
     const targets = this.targetMap.get(target);
     if (targets) {
-      for (const source of targets) { // eslint-disable-line no-restricted-syntax
+      for (const source of targets) {
         this.removeEdge(source, target);
       }
     }
