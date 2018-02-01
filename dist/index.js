@@ -112,7 +112,7 @@ class DirectedGraphMap       {
    * @return {Set<S>} - Set of sources
    */
   getSources(target  )        {
-    return this.targetMap.get(target) || new Set();
+    return new Set(this.targetMap.get(target));
   }
 
   /**
@@ -121,7 +121,7 @@ class DirectedGraphMap       {
    * @return {Set<T>} - Set of targets
    */
   getTargets(source  )        {
-    return this.sourceMap.get(source) || new Set();
+    return new Set(this.sourceMap.get(source));
   }
 
   /* :: @@iterator(): Iterator<[S, T]> { return ({}: any); } */
