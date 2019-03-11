@@ -71,6 +71,24 @@ class DirectedGraphMap<S, T> {
   }
 
   /**
+   * Test if a source exists in the graph map.
+   * @param {S} source - Source of the edge
+   * @return {boolean}
+   */
+  hasSource(source:S):boolean {
+    return this.sourceMap.has(source);
+  }
+
+  /**
+   * Test if a target exists in the graph map.
+   * @param {T} target - Target of the edge
+   * @return {boolean}
+   */
+  hasTarget(target:T):boolean {
+    return this.targetMap.has(target);
+  }
+
+  /**
    * Remove all edges from a source.
    * @param {S} source - Source of the edge
    * @return {void}

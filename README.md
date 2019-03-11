@@ -88,6 +88,8 @@ dgm.hasEdge('A', 'B'); // false
     -   [addEdge](#addedge)
     -   [removeEdge](#removeedge)
     -   [hasEdge](#hasedge)
+    -   [hasSource](#hassource)
+    -   [hasTarget](#hastarget)
     -   [removeSource](#removesource)
     -   [removeTarget](#removetarget)
     -   [getSources](#getsources)
@@ -137,6 +139,26 @@ Test if a edge exists in the graph map.
 -   `target` **T** Target of the edge
 
 Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether the edge exists in the graph map.
+
+#### hasSource
+
+Test if a source exists in the graph map.
+
+**Parameters**
+
+-   `source` **S** Source of the edge
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+#### hasTarget
+
+Test if a target exists in the graph map.
+
+**Parameters**
+
+-   `target` **T** Target of the edge
+
+Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 #### removeSource
 
