@@ -6,6 +6,9 @@
 class DirectedGraphMap       {
                            
                            
+                       
+                       
+                            
 
   /**
    * Create a directed graph map.
@@ -32,6 +35,7 @@ class DirectedGraphMap       {
     targets.add(source);
     this.sourceMap.set(source, sources);
     this.targetMap.set(target, targets);
+    this.clearCache();
   }
 
   /**
@@ -54,6 +58,7 @@ class DirectedGraphMap       {
     if (targets.size === 0) {
       this.targetMap.delete(target);
     }
+    this.clearCache();
   }
 
   /**
@@ -104,6 +109,7 @@ class DirectedGraphMap       {
       }
     }
     this.sourceMap.delete(source);
+    this.clearCache();
   }
 
   /**
@@ -122,6 +128,7 @@ class DirectedGraphMap       {
       }
     }
     this.targetMap.delete(target);
+    this.clearCache();
   }
 
   /**
@@ -130,7 +137,7 @@ class DirectedGraphMap       {
    * @return {Set<S>} - Set of sources
    */
   getSources(target  )        {
-    return new Set(this.targetMap.get(target));
+    return this.targetMap.get(target) || new Set();
   }
 
   /**
@@ -139,7 +146,7 @@ class DirectedGraphMap       {
    * @return {Set<T>} - Set of targets
    */
   getTargets(source  )        {
-    return new Set(this.sourceMap.get(source));
+    return this.sourceMap.get(source) || new Set();
   }
 
   /* :: @@iterator(): Iterator<[S, T]> { return ({}: any); } */
@@ -156,7 +163,10 @@ class DirectedGraphMap       {
    * @readonly
    */
   get edges()               {
-    return [...this.sourceMap.keys()].reduce((edges, source) => edges.concat([...this.getTargets(source)].map((target) => [source, target])), []);
+    if (!this.edgesCache) {
+      this.edgesCache = [...this.sourceMap.keys()].reduce((edges, source) => edges.concat([...this.getTargets(source)].map((target) => [source, target])), []);
+    }
+    return this.edgesCache;
   }
 
   /**
@@ -178,7 +188,10 @@ class DirectedGraphMap       {
    * @readonly
    */
   get sources()        {
-    return new Set(this.sourceMap.keys());
+    if (!this.sourcesCache) {
+      this.sourcesCache = new Set(this.sourceMap.keys());
+    }
+    return this.sourcesCache;
   }
 
   /**
@@ -189,7 +202,16 @@ class DirectedGraphMap       {
    * @readonly
    */
   get targets()        {
-    return new Set(this.targetMap.keys());
+    if (!this.targetsCache) {
+      this.targetsCache = new Set(this.targetMap.keys());
+    }
+    return this.targetsCache;
+  }
+
+  clearCache() {
+    delete this.sourcesCache;
+    delete this.targetsCache;
+    delete this.edgesCache;
   }
 }
 
