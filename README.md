@@ -85,15 +85,25 @@ dgm.hasEdge('A', 'B'); // false
 #### Table of Contents
 
 -   [DirectedGraphMap](#directedgraphmap)
+    -   [Parameters](#parameters)
     -   [addEdge](#addedge)
+        -   [Parameters](#parameters-1)
     -   [removeEdge](#removeedge)
+        -   [Parameters](#parameters-2)
     -   [hasEdge](#hasedge)
+        -   [Parameters](#parameters-3)
     -   [hasSource](#hassource)
+        -   [Parameters](#parameters-4)
     -   [hasTarget](#hastarget)
+        -   [Parameters](#parameters-5)
     -   [removeSource](#removesource)
+        -   [Parameters](#parameters-6)
     -   [removeTarget](#removetarget)
+        -   [Parameters](#parameters-7)
     -   [getSources](#getsources)
+        -   [Parameters](#parameters-8)
     -   [getTargets](#gettargets)
+        -   [Parameters](#parameters-9)
 -   [DirectedGraphMap#edges](#directedgraphmapedges)
 -   [DirectedGraphMap#size](#directedgraphmapsize)
 -   [DirectedGraphMap#sources](#directedgraphmapsources)
@@ -103,15 +113,15 @@ dgm.hasEdge('A', 'B'); // false
 
 Class representing a Directed Graph Map
 
-**Parameters**
+#### Parameters
 
--   `edges` **Iterable&lt;\[S, T]>**  (optional, default `[]`)
+-   `edges` **Iterable&lt;\[S, T]>** Iterable containing source -> target pairs (optional, default `[]`)
 
 #### addEdge
 
 Add an edge to the graph map.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 -   `target` **T** Target of the edge
@@ -122,7 +132,7 @@ Returns **void**
 
 Remove an edge from the graph map.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 -   `target` **T** Target of the edge
@@ -133,7 +143,7 @@ Returns **void**
 
 Test if a edge exists in the graph map.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 -   `target` **T** Target of the edge
@@ -144,7 +154,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Test if a source exists in the graph map.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 
@@ -154,7 +164,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Test if a target exists in the graph map.
 
-**Parameters**
+##### Parameters
 
 -   `target` **T** Target of the edge
 
@@ -164,7 +174,7 @@ Returns **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 Remove all edges from a source.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 
@@ -174,7 +184,7 @@ Returns **void**
 
 Remove all edges to a target.
 
-**Parameters**
+##### Parameters
 
 -   `target` **T** Target of the edge
 
@@ -184,7 +194,7 @@ Returns **void**
 
 Get all sources with edges to a target.
 
-**Parameters**
+##### Parameters
 
 -   `target` **T** Target of the edge
 
@@ -194,7 +204,7 @@ Returns **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Glob
 
 Get all targets with edges from a source.
 
-**Parameters**
+##### Parameters
 
 -   `source` **S** Source of the edge
 
