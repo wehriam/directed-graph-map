@@ -1,12 +1,12 @@
 {
   "name": "directed-graph-map",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "main": "dist/index.js",
   "repository": "git@github.com:wehriam/directed-graph-map",
   "author": "John Wehr <johnwehr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && flow-remove-types ./src --out-dir ./dist",
+    "build": "rm -rf ./dist; flow-remove-types ./src --out-dir ./dist && flow-copy-source ./src ./dist",
     "flow-typed": "./node_modules/.bin/flow-typed install --overwrite",
     "test": "yarn lint && yarn test:js",
     "test:js": "cross-env NODE_ENV=test jest --runInBand tests/*.test.js",
@@ -15,48 +15,44 @@
     "lint:js": "./node_modules/.bin/eslint -c ./.eslintrc --no-eslintrc --fix .",
     "lint:flow": "./node_modules/.bin/flow --show-all-errors",
     "coverage": "codecov",
-    "documentation": "documentation readme src/index.js --section='API'",
-    "start-pre-commit": "git stash -q --keep-index",
-    "end-pre-commit": "git add -u && git stash pop -q"
+    "documentation": "documentation readme dist/index.js --section='API'"
   },
-  "pre-commit": [
-    "lint",
-    "start-pre-commit",
-    "build",
-    "documentation",
-    "end-pre-commit"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn documentation && yarn build && git add dist"
+    }
+  },
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/*.js"
-    ],
-    "transform": {
-      "^.+\\.js(?:\\.flow)?$": "jest-flow-transform"
-    }
+    ]
   },
   "devDependencies": {
-    "babel-eslint": "9.0.0",
-    "codecov": "^3.3.0",
-    "cross-env": "^5.2.0",
-    "documentation": "^9.3.1",
-    "eslint": "^5.16.0",
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-flow-strip-types": "^7.10.4",
+    "babel-eslint": "^10.1.0",
+    "codecov": "^3.7.2",
+    "cross-env": "^7.0.2",
+    "documentation": "^13.0.2",
+    "eslint": "^7.6.0",
     "eslint-config-bunchtogether": "^1.1.6",
-    "eslint-plugin-flowtype": "^3.5.1",
-    "eslint-plugin-flowtype-errors": "^4.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.4.1",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "expect": "^24.7.1",
-    "flow-bin": "^0.96.0",
-    "flow-remove-types": "^1.2.3",
-    "flow-typed": "^2.5.1",
-    "jest": "^24.7.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-flowtype-errors": "^4.3.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "expect": "^26.3.0",
+    "flow-bin": "^0.131.0",
+    "flow-remove-types": "^2.131.0",
+    "flow-copy-source": "^2.0.9",
+    "flow-typed": "^3.2.1",
+    "jest": "^26.3.0",
     "jest-flow-transform": "^1.0.1",
     "pre-commit": "^1.2.2",
-    "uuid": "^3.3.2"
-  },
-  "dependencies": {}
+    "uuid": "^8.3.0"
+  }
 }

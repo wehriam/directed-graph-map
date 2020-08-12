@@ -1,14 +1,18 @@
 //      
 
+                      
+                     
+ 
+
 /**
  * Class representing a Directed Graph Map
  */
-class DirectedGraphMap       {
-                           
-                           
-                       
-                       
-                            
+class DirectedGraphMap                               {
+                                   
+                                   
+                                      
+                                      
+                                           
 
   /**
    * Create a directed graph map.
@@ -149,7 +153,7 @@ class DirectedGraphMap       {
     return this.sourceMap.get(source) || new Set();
   }
 
-  /* :: @@iterator(): Iterator<[S, T]> { return ({}: any); } */
+  /* :: @@iterator()                   { return ({}     ); } */
   // $FlowFixMe: computed property
   [Symbol.iterator]() {
     return this.edges[Symbol.iterator]();
@@ -212,6 +216,43 @@ class DirectedGraphMap       {
     delete this.sourcesCache;
     delete this.targetsCache;
     delete this.edgesCache;
+  }
+
+  toString() {
+    const segments = [''];
+    let maxLength = 5;
+    for (const source of this.sources) {
+      const sourceString = typeof source.toString === 'function' ? source.toString() : '[Object]';
+      const targets = [...this.getTargets(source)];
+      if (targets.length === 0) {
+        segments.push(`${sourceString}`);
+        segments.push('');
+        if (sourceString.length > maxLength) {
+          maxLength = sourceString.length;
+        }
+        continue;
+      }
+      const whiteSpace = ' '.repeat(sourceString.length);
+      segments.push(`${sourceString} ┓`);
+      for (let i = 0; i < targets.length; i += 1) {
+        const target = targets[i];
+        const targetString = typeof target.toString === 'function' ? target.toString() : '[Object]';
+        if (targetString.length + sourceString.length > maxLength) {
+          maxLength = targetString.length + sourceString.length;
+        }
+        if (i === targets.length - 1) {
+          segments.push(`${whiteSpace} ┗ ${targetString}`);
+        } else {
+          segments.push(`${whiteSpace} ┣ ${targetString}`);
+        }
+      }
+    }
+    for (let i = 0; i < segments.length; i += 1) {
+      segments[i] = `║ ${segments[i].padEnd(maxLength + 4, ' ')}║`;
+    }
+    segments.unshift(`╔${'═'.repeat(maxLength + 5)}╗`);
+    segments.push(`╚${'═'.repeat(maxLength + 5)}╝`);
+    return segments.join('\n');
   }
 }
 

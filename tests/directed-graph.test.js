@@ -312,3 +312,11 @@ test('Get edges, sources, and targets', () => {
     throw new Error('Unknown edge.');
   }
 });
+
+test('Stringifies', () => {
+  const A = uuid.v4();
+  const B = uuid.v4();
+  const C = uuid.v4();
+  const directedGraphMap = new DirectedGraphMap([[A, B], [B, C]]);
+  expect(directedGraphMap.toString()).toEqual(expect.any(String));
+});
