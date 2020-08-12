@@ -219,7 +219,7 @@ class DirectedGraphMap                               {
   }
 
   toString() {
-    const segments = [''];
+    const segments = [];
     let maxLength = 5;
     for (const source of this.sources) {
       const sourceString = typeof source.toString === 'function' ? source.toString() : '[Object]';
